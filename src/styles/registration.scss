@@ -1,0 +1,22 @@
+#registration {
+	padding:2em;
+	background-color: #31353e;
+	border-radius:1em;
+
+	input[type="tel"] {
+		box-sizing: border-box;
+		padding:1em;
+		width:100%;
+		border:none;
+		outline: none;
+		border-radius: .5em;
+		margin-bottom:1em;
+	}
+	button {
+		background:#1cc6d9;
+		padding:1em;
+		border-radius:.5em;
+		border:none;
+		color:#fff;
+	}
+}
