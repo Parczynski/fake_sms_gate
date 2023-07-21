@@ -3,20 +3,31 @@
 	background-color: #31353e;
 	border-radius:1em;
 
+
 	input[type="tel"] {
 		box-sizing: border-box;
-		padding:1em;
+		padding:1rem;
 		width:100%;
 		border:none;
 		outline: none;
 		border-radius: .5em;
 		margin-bottom:1em;
+		font-size:min(5vw,3em);
+		text-align: center;
+		letter-spacing: .5em;
+
+		&::placeholder {
+			letter-spacing: 0;
+			font-size:1rem;
+			text-align: left;
+		}
 	}
 	button {
-		background:#1cc6d9;
+		background:#FFF700;
 		padding:1em;
 		border-radius:.5em;
 		border:none;
-		color:#fff;
+		color:#000000;
+		width:100%;
 	}
 }
