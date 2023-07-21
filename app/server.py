@@ -1,15 +1,21 @@
 from fastapi import FastAPI, WebSocket
 from fastapi.staticfiles import StaticFiles
-from app.sms_provider import SMSProvider
+from .sms_provider import SMSProvider
 
 app = FastAPI()
-
 sms_provider = SMSProvider()
 
-app.mount( "/", StaticFiles(directory="dist", html=True), name="static")
 
 @app.websocket( "/ws" )
-async def sms_gate( ws: WebSocket, phone: str ):
-    await sms_provider.register( websocket=ws, phone=phone )
+async def otp_ws( websocket: WebSocket, phone: str ):
+    await sms_provider.register( websocket=websocket, phone=phone )
     while True:
-        data = await ws.receive_text()
+        data = await websocket.receive_text()
+    
+@app.get( "/send" )
+async def accept_sms( login: str, psw: str, phones: str, mes: str, fmt: int ):
+    list_phones = phones.split(',')
+    for phone in list_phones:
+        await sms_provider.send( phone=phone, message=mes )
+
+app.mount( "/", StaticFiles(directory="dist", html=True), name="static")
