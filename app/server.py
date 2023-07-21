@@ -14,6 +14,7 @@ async def otp_ws( websocket: WebSocket, phone: str ):
     
 @app.get( "/send" )
 async def accept_sms( login: str, psw: str, phones: str, mes: str, fmt: int ):
+    """ endpoint with smsc.ru contract"""
     list_phones = phones.split(',')
     for phone in list_phones:
         await sms_provider.send( phone=phone, message=mes )
