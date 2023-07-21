@@ -1,8 +1,9 @@
-import { FC, useState } from 'react';
+import { FC, useContext } from 'react';
 import styles from './messages.module.scss'
+import { ProviderContext } from '../core/provider';
 export const Messages: FC = () => {
 
-	const [ messages ] = useState<Message[]>( [] )
+	const { messages } = useContext(ProviderContext)
 
 	
 
