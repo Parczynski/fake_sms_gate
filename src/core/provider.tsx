@@ -8,8 +8,7 @@ type Context = {
 
 
 export const ProviderContext = createContext( { } as Context )
-
-const PROVIDER_ENDPOINT = 'ws://127.0.0.1:3000/ws'
+const PROVIDER_ENDPOINT = `ws://${location.host}/ws`
 
 let ws: WebSocket | undefined
 
