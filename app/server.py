@@ -19,4 +19,9 @@ async def accept_sms( login: str, psw: str, phones: str, mes: str, fmt: int ):
     for phone in list_phones:
         await sms_provider.send( phone=phone, message=mes )
 
+    return {
+        "id": 1,
+        "cnt": 1
+    }
+
 app.mount( "/", StaticFiles(directory="dist", html=True), name="static")
