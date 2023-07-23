@@ -4,22 +4,25 @@
 	border-radius:1em;
 
 
+	label {
+		color:#fff;
+		margin:.5em 0;
+		display:inline-block;
+	}
 	input[type="tel"] {
 		box-sizing: border-box;
 		padding:1rem;
 		width:100%;
 		border:none;
 		outline: none;
-		border-radius: .5em;
+		border-radius: .3em;
 		margin-bottom:1em;
 		font-size:min(5vw,3em);
 		text-align: center;
 		letter-spacing: .5em;
 
 		&::placeholder {
-			letter-spacing: 0;
-			font-size:1rem;
-			text-align: left;
+			color:#e0e0e0;
 		}
 	}
 	button {
