@@ -14,6 +14,11 @@ class SMSProvider:
         await websocket.send_json( { "id": f'{self.registrations}_registration', "content":f'{phone} зарегистрирован' })
 
     async def send( self, phone: str, message: str ):
-        self.messages += 1
+
+        
         if phone in self.connections:
+            self.messages += 1
             await self.connections[phone].send_json( { "id": f'{self.messages}_message', "content": message })
+            return True
+        
+        return False
