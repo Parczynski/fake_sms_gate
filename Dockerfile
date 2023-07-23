@@ -1,23 +1,39 @@
-FROM    node:20-alpine
+FROM        node:20-alpine AS deps
 
-RUN     apk add --no-cache python3 py3-pip
+WORKDIR     /app
 
-WORKDIR /app
+COPY        package.json package-lock.json ./
 
-COPY    package.json package-lock.json requirements.txt ./
+RUN         npm ci
 
-RUN     npm i
 
-RUN     pip install -r requirements.txt
 
-COPY    . .
+FROM        node:20-alpine AS builder
 
-RUN     npm run build
+WORKDIR     /app
 
-RUN     chown -R node:node /app
+COPY        --from=deps /app/node_modules ./node_modules
 
-USER    node
+COPY        . .
 
-EXPOSE  3000
+RUN         npm run build
 
-CMD     [ "python", "-m", "app.main" ]
+
+
+FROM        python:3.11-alpine as runner
+
+WORKDIR     /app
+
+COPY        requirements.txt ./
+
+RUN         pip install -r requirements.txt
+
+COPY        --from=builder /app/dist ./dist
+
+COPY        ./app ./app
+
+COPY        ./__init__.py ./
+
+EXPOSE      3000
+
+CMD         [ "python", "-m", "app.main" ]
