@@ -23,7 +23,7 @@ export const SMSProvider: FC<PropsWithChildren> = ( {children}) => {
 		if( phone === '' ) {
 			const message: Message = {
 				id: `${error_number++}_error`,
-				content: `Необходимо указать номер`
+				content: `The phone number is required`
 			}
 			setMessages( old => [ message, ...old ] )
 			return	
