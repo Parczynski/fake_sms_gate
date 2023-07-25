@@ -9,7 +9,7 @@ type Context = {
 
 export const ProviderContext = createContext( { } as Context )
 
-const PROVIDER_ENDPOINT = location.protocol === 'https'
+const PROVIDER_ENDPOINT = location.protocol === 'https:'
 	? `wss://${location.host}/ws`
 	: `ws://${location.host}/ws`
 
