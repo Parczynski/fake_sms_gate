@@ -8,7 +8,10 @@ type Context = {
 
 
 export const ProviderContext = createContext( { } as Context )
-const PROVIDER_ENDPOINT = `ws://${location.host}/ws`
+
+const PROVIDER_ENDPOINT = location.protocol === 'https'
+	? `wss://${location.host}/ws`
+	: `ws://${location.host}/ws`
 
 let ws: WebSocket | undefined
 
